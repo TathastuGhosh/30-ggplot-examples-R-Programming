@@ -1,6 +1,6 @@
-# ---------- REGRESSION RELATED --------------------#
+# ---------------------------------------------------
 # 1
-# regression curve
+# Figure  5.14 : Regression curve with error showing effect of other variable
 CO2 %>% 
   ggplot(aes(conc,uptake,colour = Treatment))+
   geom_point()+
@@ -8,7 +8,7 @@ CO2 %>%
 
 # ----------------------------------------------------
 # 2
-# regression line
+# Figure 5.15 : Regression line showing effect of other variables
 CO2 %>% 
   ggplot(aes(conc,uptake,colour = Treatment))+
   geom_point()+
@@ -19,7 +19,7 @@ CO2 %>%
 
 # ------------------------------------------------------
 # 3
-# regression curve with standard error
+# Figure 5.16 : Regression curve with error showing effect of other variables
 msleep %>% 
   filter(bodywt<2) %>% 
   ggplot(aes(bodywt,brainwt))+
@@ -33,7 +33,7 @@ msleep %>%
 
 # ------------------------------------------------------
 # 4
-# regression using faceting
+# Figure 5.17 : Regression curve under faceting
 library(gapminder)
 gapminder %>% 
   filter(gdpPercap < 40000 & continent != "Oceania") %>% 
@@ -44,12 +44,8 @@ gapminder %>%
   facet_wrap(~continent)
 
 # ------------------------------------------------------
-
-##########################################################################
-# ---------- BOXPLOT RELATED --------------------#
-
 # 5
-# boxplot with points
+# Figure 5.18 : Boxplot with points on it
 CO2 %>% 
   ggplot(aes(Treatment,uptake))+
   geom_boxplot()+
@@ -62,7 +58,7 @@ CO2 %>%
 
 # -------------------------------------------------------
 # 6
-# side by side boxplot
+# Figure 5.19 : Side by side boxplot seperated by colour
 Salaries %>% 
   filter(salary < 150000) %>% 
   ggplot(aes(x = rank, y = salary, fill = sex))+
@@ -78,13 +74,8 @@ Salaries %>%
   theme(legend.position = c(.10,.80))
 
 # ------------------------------------------------------
-
-
-####################################################################
-# ---------------DENSITY PLOT --------------------#.
-
 # 7
-# density curve faceting
+# Figure 5.20 : Density plot under faceting
 msleep %>%
   drop_na(vore) %>% 
   ggplot(aes(sleep_total))+
@@ -92,9 +83,8 @@ msleep %>%
   facet_wrap(~vore)
 
 # ------------------------------------------------------
-
 # 8
-#density curve together
+# Figure 5.21 : Density plot one on another
 msleep %>% 
   drop_na(vore) %>%
   ggplot(aes(sleep_total,fill=vore))+
@@ -102,19 +92,14 @@ msleep %>%
   theme_bw()
 
 # ------------------------------------------------------
-
 # 9
-# symmetric density plot
+# Figure 5.22 : Symmetric density plot
 library(ggplot2)
 library(hrbrthemes)
-
-# Dummy data
 data <- data.frame(
   var1 = rnorm(1000),
   var2 = rnorm(1000, mean=2)
 )
-
-# Chart
 p <- ggplot(data, aes(x=var1) ) +
   # Top
   geom_density( aes(x = var1, y = ..density..), fill="#69b3a2" ) +
@@ -127,6 +112,7 @@ p
 
 # ------------------------------------------------------------
 # 10
+# Figure 5.23 : Violin plot with boxplot
 
 library(ggplot2)
 library(dplyr)
@@ -157,12 +143,8 @@ data %>%
   ggtitle("A Violin wrapping a boxplot") +
   xlab("")
 # -----------------------------------------------------------------
-################################################################
-
-# ------------------- HISTOGRAM --------------------------#
-
 # 11
-# histogram using faceting
+# Figure 5.24 : Histogram under faceting
 library(forcats)
 library(gapminder)
 gss_cat %>% 
@@ -175,10 +157,9 @@ gss_cat %>%
        x = "AGE",
        y = "")
 
-################################################################3
-# ----------- AREA & RASTER PLOT  & LEVEL PLOT & HEATMAPS---------------------3
+# -------------------------------------------------------------
 # 12
-# area plot
+# Figure 5.25 : Area plot
 mpg %>% 
   ggplot(aes(x=displ))+
   geom_area(aes(y=hwy,fill="Highway"))+
@@ -189,9 +170,8 @@ mpg %>%
        fill = "")
 
 # ----------------------------------------------------------
-
 # 13
-# raster plot
+# Figure 5.26 : Raster plot
 faithfuld %>% 
   ggplot(aes(x = waiting,
              y = eruptions,
@@ -200,7 +180,7 @@ faithfuld %>%
 
 # ----------------------------------------------------------
 # 14
-# level plot
+# Figure 5.29 : Level plot (Contour plot)
 library(latticeExtra) 
 set.seed(1) 
 data <- data.frame(x = rnorm(100), y = rnorm(100)) 
@@ -211,10 +191,8 @@ levelplot(z ~ x * y, data,
   layer_(panel.2dsmoother(..., n = 200))
 
 # ------------------------------------------------------------------
-
 # 15
-# heatmaps(tile plot)
-
+# Figure 5.28 : Heatmaps(tile plot)
 library(ggplot2)
 library(hrbrthemes)
 library(plotly)
@@ -234,13 +212,8 @@ p <- ggplot(data, aes(X, Y, fill= Z, text=text)) +
 ggplotly(p, tooltip="text")
 
 # -----------------------------------------------------------------------
-
-
-######################################################################3
-# -------------- BAR PLOT ---------------------3
-
 # 16
-# multiple bar plot(side by side)
+# Figure 5.29 : Side by side bar plot
 starwars %>% 
   filter(hair_color %in% c("black","brown")) %>% 
   drop_na(sex) %>% 
@@ -249,9 +222,8 @@ starwars %>%
   theme_bw()
 
 # ------------------------------------------------------
-
 # 17
-# stacked bar plot
+# Figure 5.30 : Stacked bar plot
 starwars %>% 
   filter(hair_color %in% c("black","brown")) %>% 
   drop_na(sex) %>% 
@@ -262,7 +234,7 @@ starwars %>%
 # -------------------------------------------------------
 
 # 18
-#bar plot with error bar
+# Figure 5.31 : Bar plot with error bar
 ToothGrowth %>% 
   filter(supp == "VC") %>% 
   mutate(dose = as.factor(dose)) %>% 
@@ -279,11 +251,9 @@ ToothGrowth %>%
   theme_bw()
 
 # -----------------------------------------------------
-
 # 19
-# circular barplot
+# Figure 5.32 : Circular barplot
 library(tidyverse)
-
 # Create dataset
 data <- data.frame(
   id=seq(1,60),
@@ -305,9 +275,6 @@ label_data$hjust<-ifelse( angle < -90, 1, 0)
 
 # flip angle BY to make them readable
 label_data$angle<-ifelse(angle < -90, angle+180, angle)
-# ----- ------------------------------------------- ---- #
-
-
 # Start the plot
 p <- ggplot(data, aes(x=as.factor(id), y=value)) +       # Note that id is a factor. If x is numeric, there is some space between the first bar
   
@@ -336,12 +303,9 @@ p
 
 
 
-# ------------------------------------------------------------------------------------
-#####################################################################3
-# ---------------------- Lollipop Graph ----------------------
-
+# ---------------------------------------------------------------------
 # 20
-# Lollipop Graph
+# Figure 5.33 : Lollipop graph
 msleep %>% 
   group_by(order) %>% 
   summarise(mean_sleep = mean(sleep_total)) %>% 
@@ -363,9 +327,8 @@ msleep %>%
        y = "Hours")
 
 # -----------------------------------------------------------
-############################################################################
-# -------------- ANNOTATIONS --------------------#
 # 21
+# Figure 5.34 : Annotations on graph
 ggplot(mtcars,aes(wt,mpg,color = factor(gear)))+
   geom_point(size = 3,alpha = 0.6)+
   labs(title = "Weight vs Miles per gallon",
@@ -401,18 +364,17 @@ ggplot(mtcars,aes(wt,mpg,color = factor(gear)))+
                arrow = arrow(length = unit(0.5,"cm")),
                color = "darkgreen",
                size = 1.5)
+
 # ----------------------------------------------------------
-#######################################################################3
-
-# -------------- PIE CHART -----------------#
-
 # 22
-# pie chart
+# Figure 5.35 : Pie chart
 ggplot(mtcars, aes(x="", y=mpg, fill=cyl)) + geom_bar(stat="identity", width=1) +
   coord_polar("y", start=0)
 
-# -------------------------------------------------------------
 
+# -------------------------------------------------------------
+# 23
+# Figure 5.36 : Polar area chart
 library(ggplot2)
 bar <- ggplot(data = diamonds) +
   geom_bar(
@@ -424,11 +386,9 @@ bar <- ggplot(data = diamonds) +
   labs(x = NULL, y = NULL)
 bar + coord_polar()
 
-# -------------------------------------------------------------
-########################################################################
-# ------------------ RIDGELINE PLOT ----------------------#
-# 23
-# Ridgeline plot
+# ------------------------------------------------------
+# 24
+# Figure 5.37 : Ridgeline plot
 library(ggridges)
 library(ggplot2)
 library(viridis)
@@ -446,33 +406,22 @@ ggplot(lincoln_weather, aes(x = `Mean Temperature [F]`, y = `Month`, fill = ..x.
   )
 
 # ---------------------------------------------------------------
-###########################################################################
-
-# --------------- PLOT MATRIX -----------------------#
-# 24
-# overview of the variable
+# 25
+# Figure 5.38 : Plot matrix with scatter plot, density plot and bar diagrams
 library(GGally)
 mtcars$cyl = as.factor(mtcars$cyl)
 ggpairs(mtcars,columns = 1:4,aes(color = cyl, alpha = 0.5))
 
-# --------------------------------------------------------------
-# 25
-library(GGally)
-data(flea)
-ggpairs(flea, columns = 2:4, ggplot2::aes(colour=species)) 
-
 # ------------------------------------------------------------------------
 # 26
-# correlation matrix with pie chart
+# Figure 5.39 : Plot matric with pie chart
 library(corrgram)
 corrgram(mtcars, order=TRUE, lower.panel=panel.shade, upper.panel=panel.pie, text.panel=panel.txt, main="Car Milage Data in PC2/PC1 Order") 
 
-
 # ------------------------------------------------------------------------
 # 27
-# scatterplot with density plot at margins
+# Figure 5.40 : Density plot at margins
 library(ggpubr)
-# Grouped Scatter plot with marginal density plots
 ggscatterhist(
   iris, x = "Sepal.Length", y = "Sepal.Width",
   color = "Species", size = 3, alpha = 0.6,
@@ -480,11 +429,9 @@ ggscatterhist(
   margin.params = list(fill = "Species", color = "black", size = 0.2)
 )
 
-# ---------------------------------------------------------------------------
-############################################################################
-# --------------------- MULTIPLE LINE PLOT ----------------------- #
+# --------------------------------------------------------------
 # 28
-# multiple line plot
+# Figure 5.41 : Multiple line plot
 df <- economics %>%
   select(date, psavert, uempmed) %>%
   gather(key = "variable", value = "value", -date)
@@ -496,21 +443,15 @@ ggplot(df, aes(x = date, y = value)) +
   theme_minimal()
 
 # ------------------------------------------------------------------------
-
-#############################################################################
-# ------------------------ QQPLOT --------------------------------3
 # 29
-# qqplot
+# Figure 5.42 : qqplot
 library(ggpubr)
 ggqqplot(iris, x = "Sepal.Length",col = "red",
          ggtheme = theme_bw())
 
-
-
-#######################################################
-# ------------------- Background change ----------------#
+# -------------------------------------------------------
 # 30
-
+# Figure 5.43 : Changing panel background
 df <- data.frame(x=c(1, 3, 3, 4, 5, 5, 6, 9, 12, 15),
                  y=c(13, 14, 14, 12, 17, 21, 22, 28, 30, 31))
 p <- ggplot(df, aes(x=x, y=y)) +
@@ -518,22 +459,3 @@ p <- ggplot(df, aes(x=x, y=y)) +
 p + theme(panel.background = element_rect(fill = 'lightblue', color = 'purple'),
           panel.grid.major = element_line(color = 'red', linetype = 'dotted'),
           panel.grid.minor = element_line(color = 'green', size = 2))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
